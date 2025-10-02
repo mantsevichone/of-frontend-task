@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Virtual Machine Name",
+    "title": "Select a name",
+    "description": "A virtual machine requires storage so that you can install an operating system.",
+    "questions": [
+      {
+        "id": "name_question",
+        "type": "text",
+        "label": "Name",
+        "helperText": "Enter unique name up to 80 characters",
+        "validations": {
+          "required": {
+            "value": true,
+            "message": "Required field"
+          },
+          "maxLength": {
+            "value": 80,
+            "message": "Name is too long"
+          }
+        },
+        "path": "name"
+      }
+    ]
+  },
+  {
+    "name": "General Settings",
+    "title": "General Settings",
+    "description": "Configure the virtual machine hardware.",
+    "questions": [
+      {
+        "id": "cpu_question",
+        "type": "number",
+        "label": "CPU",
+        "helperText": "Enter number of processors up to 12",
+        "validations": {
+          "required": {
+            "value": true,
+            "message": "Required field"
+          },
+          "max": {
+            "value": 12,
+            "message": "Number of processors must be up to 12"
+          }
+        },
+        "path": "cpu"
+      },
+      {
+        "id": "counters_question",
+        "type": "checkbox",
+        "label": "Enable virtualized CPU performance counters",
+        "path": "counters"
+      },
+      {
+        "id": "memory_question",
+        "type": "number",
+        "label": "RAM",
+        "helperText": "Enter memory amount up to 50GB",
+        "validations": {
+          "required": {
+            "value": true,
+            "message": "Required field"
+          },
+          "max": {
+            "value": 50,
+            "message": "Enter memory amount up to 50GB"
+          }
+        },
+        "path": "memory"
+      },
+      {
+        "id": "memory_slider_question",
+        "type": "slider",
+        "max": 50,
+        "units": "GB",
+        "path": "memory"
+      }
+    ]
+  },
+  {
+    "name": "summary",
+    "title": "Ready to complete",
+    "description": "Review your settings selection before finishing the wizard.",
+    "questions": [],
+    "answers": [
+      {
+        "label": "Name",
+        "path": "name"
+      },
+      {
+        "label": "CPU",
+        "path": "cpu"
+      },
+      {
+        "label": "RAM",
+        "path": "memory",
+        "units": "GB"
+      }
+    ]
+  }
+]
