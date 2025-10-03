@@ -49,3 +49,14 @@ export const Divider = styled.hr`
   height: 1px;
   width: 100%;
 `;
+
+export const Card = styled.div`
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+`;
+
+export const CardTitle = styled.h2`
+  margin: 0;
+  font-size: 16px;
+`;

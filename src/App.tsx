@@ -1,15 +1,15 @@
-import { Routes, Route, Navigate, NavLink } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
+
 
 import "./App.css";
 import { Dashboard, Events } from "./routes";
+import { Header } from "./components/header";
+
 
 function App() {
   return (
     <>
-      <nav>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="/events">Events</NavLink>
-      </nav>
+      <Header/>
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
