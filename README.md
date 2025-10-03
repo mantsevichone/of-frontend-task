@@ -4,6 +4,10 @@ Frontend Test Task
 
 ## Development server
 
+### Prerequisites
+
+Node version at least 20
+
 To start a local development server, run:
 
 ```bash
