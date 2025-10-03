@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 
 import { BodyTitle, Divider } from "../../../sharedStyles";
+import ilustration from '../../../../assets/illustration_png.png';
 
 export const Wrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background: url("/illustration_png.png") #5f3196;
+  background: url(${ilustration}) #5f3196;
   border-radius: 0 0 0 8px;
   min-width: 244px;
   width: 244px;
