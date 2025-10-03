@@ -1,12 +1,20 @@
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import areaChartData from "./data.json";
 import { Card, CardTitle } from "../sharedStyles";
+import { FlexContainer, TimeCTA } from "./styles";
 
 export function TrendChart() {
   return (
     <Card style={{ paddingBottom: 16 }}>
-      <CardTitle style={{ marginBottom: 8 }}>Trend</CardTitle>
+      <FlexContainer>
+        <CardTitle style={{ marginBottom: 8 }}>Trend</CardTitle>
+        <TimeCTA onClick={() => alert('Work in Progress ♻️')}>
+          Last 14 days
+          <ExpandMoreIcon sx={{ color: '#212529', fontSize: 16 }} />
+        </TimeCTA>
+      </FlexContainer>
       <AreaChart
         width={700}
         height={220}

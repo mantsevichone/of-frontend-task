@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useSelector } from "react-redux";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
@@ -7,6 +8,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import WarningIcon from "@mui/icons-material/Warning";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
+import type { RootState } from "../../store";
 import { type VirtualMachine } from "../../types";
 import {
   StyledTable,
@@ -101,11 +103,8 @@ function getComparator(order: Order, orderBy: keyof VirtualMachine) {
 
 type Order = "asc" | "desc";
 
-interface Props {
-  vmList: VirtualMachine[];
-}
-
-export function VMTable({ vmList }: Props) {
+export function VMTable() {
+  const vmList = useSelector((state: RootState) => state.vmList);
   const [order, setOrder] = useState<Order>("desc");
   const [orderBy, setOrderBy] = useState<keyof VirtualMachine>("createdAt");
 
@@ -125,7 +124,7 @@ export function VMTable({ vmList }: Props) {
 
   const sortedRows = useMemo(() => {
     return [...vmList].sort(getComparator(order, orderBy));
-  }, [order, orderBy]);
+  }, [order, orderBy, vmList.length]);
 
   return (
     <StyledTable>

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import { useSelector } from "react-redux";
 
-import virtualMachinesData from "./data.json";
-import { type VirtualMachine } from "../../types";
+import type { RootState } from "../../store";
 import {
   Layout,
   FlexContainer,
@@ -18,12 +18,12 @@ import { TrendChart } from "../../components/trend-chart";
 
 export function Dashboard() {
   const [open, setOpen] = useState(false);
-  const vmList: VirtualMachine[] = virtualMachinesData;
+  const vmList = useSelector((state: RootState) => state.vmList);
 
   return (
     <Layout>
       <FlexContainer>
-        <StateChart vmList={vmList} />
+        <StateChart />
         <TrendChart />
       </FlexContainer>
       <Container>
@@ -39,7 +39,7 @@ export function Dashboard() {
           New
         </StyledButton>
       </Container>
-      <VMTable vmList={vmList} />
+      <VMTable />
       {open && <CreationDialog onClose={() => setOpen(false)} />}
     </Layout>
   );

@@ -1,8 +1,10 @@
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
+import { add as addVirtualMachine } from "../../store/vmListSlice";
 import { Sidebar } from "./components/sidebar";
 import { Form } from "./components/form";
 import { Summary } from "./components/summary";
@@ -18,6 +20,7 @@ import {
 } from "./styles";
 
 import JOURNEY from "./journey.json";
+import type { VirtualMachine } from "../../types";
 
 interface Props {
   onClose: () => void;
@@ -30,6 +33,8 @@ function exists(value: unknown) {
 // TODO: error icon on error input state
 
 export function CreationDialog({ onClose }: Props) {
+  const vmId = useId();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [activeSectionIndex, setActiveSection] = useState(0);
   const [creationData, setCreationData] = useState<
@@ -54,7 +59,22 @@ export function CreationDialog({ onClose }: Props) {
   };
 
   const handleCreate = () => {
-    console.log(creationData);
+    const { cpu, memory } = creationData;
+    const newVM: VirtualMachine = {
+      id: vmId,
+      state: true,
+      hostServer: "43C07-27",
+      cpuValue: 1,
+      cpu: Number(cpu),
+      memoryValue: 0,
+      memory: Number(memory),
+      memoryUnit: "GiB",
+      createdAt: new Date().toISOString(),
+      alerts: { critical: 0, important: 0, moderate: 0 },
+    };
+
+    dispatch(addVirtualMachine(newVM));
+
     onClose();
   };
 

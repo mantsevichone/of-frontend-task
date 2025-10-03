@@ -1,6 +1,7 @@
 import { Pie, PieChart, Label, Legend } from "recharts";
+import { useSelector } from "react-redux";
 
-import { type VirtualMachine } from "../../types";
+import type { RootState } from "../../store";
 import { Card, CardTitle } from "../sharedStyles";
 import { LegendLabel } from "./styles";
 
@@ -11,11 +12,9 @@ interface PieData {
   [key: string]: string | number;
 }
 
-interface Props {
-  vmList: VirtualMachine[];
-}
+export function StateChart() {
+  const vmList = useSelector((state: RootState) => state.vmList);
 
-export function StateChart({ vmList }: Props) {
   const initPieCharData: PieData[] = [
     {
       name: "Stopped",
@@ -50,7 +49,7 @@ export function StateChart({ vmList }: Props) {
           cx={89}
         >
           <Label
-            dx={-44.5}
+            dx={-50}
             dy={-10}
             fill="#212529"
             fontSize={40}
@@ -60,7 +59,7 @@ export function StateChart({ vmList }: Props) {
             {vmList.length}
           </Label>
           <Label
-            dx={-44.5}
+            dx={-50}
             dy={20}
             fontSize={12}
             fontWeight={400}

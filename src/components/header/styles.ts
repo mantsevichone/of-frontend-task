@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router";
 import Badge from "@mui/material/Badge";
+import { css } from "@emotion/react";
 
 export const Container = styled.div`
   position: sticky;
@@ -47,17 +48,36 @@ export const Nav = styled.nav`
   gap: 24px;
 `;
 
-export const StyledNavLink = styled(NavLink)`
+const headerCTA = css`
   color: #495057;
   text-decoration: none;
   padding: 8px 16px;
   font-size: 16px;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  ${headerCTA}
 
   &.active {
     font-weight: 700;
     color: #212529;
     border-bottom: 1.5px solid #212529;
   }
+`;
+
+export const HelpCTA = styled.span`
+  ${headerCTA}
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+`;
+
+export const HelpMessage = styled.span`
+  display: inline-block;
+  padding: 16px;
+  font-size: 40px;
 `;
 
 export const StyledBadge = styled(Badge)`

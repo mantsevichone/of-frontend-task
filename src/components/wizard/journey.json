@@ -38,6 +38,10 @@
             "value": true,
             "message": "Required field"
           },
+          "min": {
+            "value": 1,
+            "message": "Number of processors must be at least 1"
+          },
           "max": {
             "value": 12,
             "message": "Number of processors must be up to 12"
