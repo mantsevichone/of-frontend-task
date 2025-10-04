@@ -5,11 +5,13 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import ImportExportIcon from "@mui/icons-material/ImportExport";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import WarningIcon from "@mui/icons-material/Warning";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 import type { RootState } from "../../store";
-import { type VirtualMachine } from "../../types";
+import type { VirtualMachine } from "../../types";
+import type { Order } from "./types";
+import { formatDuration, getComparator } from "./utils";
+import { AlertCounter } from "./components/AlertCounter";
 import {
   StyledTable,
   StyledTableCell,
@@ -17,7 +19,6 @@ import {
   CopyLabel,
   Chip,
   StyledProgress,
-  Alert,
 } from "./styles";
 
 function displayAlert(alerts: {
@@ -27,81 +28,31 @@ function displayAlert(alerts: {
 }) {
   if (alerts.critical > 0) {
     return (
-      <Alert>
-        <WarningIcon sx={{ fontSize: 19, color: "#DC3545" }} />
-        <span>
-          <strong>{alerts.critical}</strong> Critical
-        </span>
-      </Alert>
+      <AlertCounter color="#DC3545" amount={alerts.critical} label="Critical" />
     );
   }
   if (alerts.important > 0) {
     return (
-      <Alert>
-        <WarningIcon sx={{ fontSize: 19, color: "#FD7E14" }} />
-        <span>
-          <strong>{alerts.important}</strong> Important
-        </span>
-      </Alert>
+      <AlertCounter
+        color="#FD7E14"
+        amount={alerts.important}
+        label="Important"
+      />
     );
   }
   if (alerts.moderate > 0) {
     return (
-      <Alert>
-        <WarningIcon sx={{ fontSize: 19, color: "#FFC008" }} />
-        <span>
-          <strong>{alerts.moderate}</strong> Moderate
-        </span>
-      </Alert>
+      <AlertCounter color="#FFC008" amount={alerts.moderate} label="Moderate" />
     );
   }
   return (
-    <Alert>
-      <CheckCircleIcon sx={{ fontSize: 19, color: "#1A8754" }} />
-      <span>All good</span>
-    </Alert>
+    <AlertCounter
+      color="#1A8754"
+      label="All good"
+      IconComponent={CheckCircleIcon}
+    />
   );
 }
-
-function formatDuration(ms: number) {
-  const totalSeconds = Math.floor(ms / 1000);
-  const days = Math.floor(totalSeconds / (24 * 3600));
-  const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  return `${days}:${hours}:${minutes}:${seconds}`;
-}
-
-function compare(
-  a: VirtualMachine,
-  b: VirtualMachine,
-  orderBy: keyof VirtualMachine
-) {
-  let valueA, valueB;
-
-  if (orderBy === "createdAt") {
-    valueA = new Date(a[orderBy]).getTime();
-    valueB = new Date(b[orderBy]).getTime();
-  } else {
-    valueA = a[orderBy];
-    valueB = b[orderBy];
-  }
-  if (valueB < valueA) {
-    return -1;
-  }
-  if (valueB > valueA) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order: Order, orderBy: keyof VirtualMachine) {
-  return (a: VirtualMachine, b: VirtualMachine) =>
-    order === "desc" ? compare(a, b, orderBy) : -compare(a, b, orderBy);
-}
-
-type Order = "asc" | "desc";
 
 export function VMTable() {
   const vmList = useSelector((state: RootState) => state.vmList);

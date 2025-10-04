@@ -2,6 +2,10 @@
 
 Frontend Test Task
 
+## Demo
+
+https://mantsevichone.github.io/of-frontend-task/
+
 ## Development server
 
 ### Prerequisites

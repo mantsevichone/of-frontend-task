@@ -112,9 +112,3 @@ export const StyledProgress = styled.progress`
   background-color: #f8f6fb;
   border-radius: 8px;
 `;
-
-export const Alert = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-`;
