@@ -7,8 +7,8 @@ import ImportExportIcon from "@mui/icons-material/ImportExport";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-import type { RootState } from "../../store";
-import type { VirtualMachine } from "../../types";
+import type { RootState } from "@/store";
+import type { VirtualMachine } from "@/types";
 import type { Order } from "./types";
 import { formatDuration, getComparator } from "./utils";
 import { AlertCounter } from "./components/AlertCounter";

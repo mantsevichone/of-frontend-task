@@ -1,7 +1,7 @@
 import { Fragment, type ReactElement } from "react";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-import { NextButton, Divider } from "../../../sharedStyles";
+import { NextButton, Divider } from "@/components/sharedStyles";
 import {
   SummaryWrapper,
   AnswerBoard,

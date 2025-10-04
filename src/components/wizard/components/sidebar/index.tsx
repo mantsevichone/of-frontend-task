@@ -7,7 +7,7 @@ import {
   Section,
   ActiveSection,
 } from "./styles.ts";
-import { Title, BodyTitle } from "../../../sharedStyles.ts";
+import { Title, BodyTitle } from "@/components/sharedStyles";
 
 interface Props {
   journey: Array<{ name: string; complete: boolean }>;

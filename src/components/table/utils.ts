@@ -1,4 +1,4 @@
-import type { VirtualMachine } from "../../types";
+import type { VirtualMachine } from "@/types";
 import type { Order } from "./types";
 
 export function compare(

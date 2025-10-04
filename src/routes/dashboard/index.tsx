@@ -2,7 +2,7 @@ import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
 
-import type { RootState } from "../../store";
+import type { RootState } from "@/store";
 import {
   Layout,
   FlexContainer,

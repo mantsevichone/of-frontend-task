@@ -1,7 +1,7 @@
 import { Pie, PieChart, Label, Legend } from "recharts";
 import { useSelector } from "react-redux";
 
-import type { RootState } from "../../store";
+import type { RootState } from "@/store";
 import { Card, CardTitle } from "../sharedStyles";
 import { LegendLabel } from "./styles";
 

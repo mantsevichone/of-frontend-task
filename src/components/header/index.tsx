@@ -16,8 +16,8 @@ import {
   HelpMessage,
 } from "./styles";
 
-import Logo from "../../assets/logo.svg";
-import Image from "../../assets/avatar.jpg";
+import Logo from "@/assets/logo.svg";
+import Image from "@/assets/avatar.jpg";
 
 export function Header() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);

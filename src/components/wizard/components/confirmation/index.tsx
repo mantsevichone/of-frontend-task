@@ -1,7 +1,7 @@
 import Modal from "@mui/material/Modal";
 import InfoIcon from "@mui/icons-material/Info";
 
-import { FormDescription } from "../../../sharedStyles";
+import { FormDescription } from "@/components/sharedStyles";
 import {
   Confirmation,
   ConfirmationTitle,

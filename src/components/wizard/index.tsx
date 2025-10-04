@@ -4,13 +4,13 @@ import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { add as addVirtualMachine } from "../../store/vmListSlice";
+import { add as addVirtualMachine } from "@/store/vmListSlice";
 import { Sidebar } from "./components/sidebar";
 import { Form } from "./components/form";
 import { Summary } from "./components/summary";
 import { ConfirmationDialog } from "./components/confirmation";
-import { exists } from "../../utils";
-import type { VirtualMachine } from "../../types";
+import { exists } from "@/utils";
+import type { VirtualMachine } from "@/types";
 import type { QuestionType } from "./types";
 import { FormDescription, BackButton } from "../sharedStyles";
 import {

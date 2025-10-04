@@ -3,7 +3,7 @@ import Slider, { type SliderProps } from "@mui/material/Slider";
 import styled, { type StyledOptions } from "@emotion/styled";
 import { css } from "@emotion/react";
 
-import { exists } from "../../../../../../utils";
+import { exists } from "@/utils";
 
 type ComposedSliderProps = SliderProps & {
   fieldSate: ControllerFieldState;

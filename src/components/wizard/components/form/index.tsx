@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { Question } from "../question";
 import type { QuestionType } from "../../types";
-import { NextButton } from "../../../sharedStyles";
+import { NextButton } from "@/components/sharedStyles";
 import { FormElement, ActionBlock } from "./styles";
 
 function getDefaultValue(type: string) {

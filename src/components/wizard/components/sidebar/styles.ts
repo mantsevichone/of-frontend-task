@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-import { BodyTitle, Divider } from "../../../sharedStyles";
-import ilustration from '../../../../assets/illustration_png.png';
+import { BodyTitle, Divider } from "@/components/sharedStyles";
+import ilustration from '@/assets/illustration_png.png';
 
 export const Wrapper = styled.div`
   box-sizing: border-box;

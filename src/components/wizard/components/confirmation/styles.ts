@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { BackButton, NextButton } from "../../../sharedStyles";
+import { BackButton, NextButton } from "@/components/sharedStyles";
 
 export const Confirmation = styled.div`
   position: absolute;
