@@ -2,30 +2,16 @@ import { useEffect, type ReactElement } from "react";
 import { useForm } from "react-hook-form";
 
 import { Question } from "../question";
+import type { QuestionType } from "../../types";
 import { NextButton } from "../../../sharedStyles";
 import { FormElement, ActionBlock } from "./styles";
 
 function getDefaultValue(type: string) {
-  switch (type) {
-    case "checkbox": {
-      return false;
-    }
-    case "number":
-    case "slider":
-    case "text":
-    default: {
-      return "";
-    }
-  }
+  return type === "checkbox" ? false : "";
 }
 
 interface Props {
-  questions: Array<{
-    id: string;
-    type: string;
-    path: string;
-    answer: string | number | boolean;
-  }>;
+  questions: QuestionType[];
   onSubmit: (data: object) => void;
   isComplete: boolean;
   backButton?: ReactElement;

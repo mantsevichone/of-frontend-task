@@ -9,6 +9,9 @@ import { Sidebar } from "./components/sidebar";
 import { Form } from "./components/form";
 import { Summary } from "./components/summary";
 import { ConfirmationDialog } from "./components/confirmation";
+import { exists } from "../../utils";
+import type { VirtualMachine } from "../../types";
+import type { QuestionType } from "./types";
 import { FormDescription, BackButton } from "../sharedStyles";
 import {
   Container,
@@ -18,16 +21,14 @@ import {
   FormContainer,
   FormTitle,
 } from "./styles";
-
 import JOURNEY from "./journey.json";
-import type { VirtualMachine } from "../../types";
 
 interface Props {
   onClose: () => void;
 }
 
-function exists(value: unknown) {
-  return value !== undefined && value !== null && value !== "";
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * (max + 1));
 }
 
 // TODO: error icon on error input state
@@ -59,14 +60,14 @@ export function CreationDialog({ onClose }: Props) {
   };
 
   const handleCreate = () => {
-    const { cpu, memory } = creationData;
+    const { cpu, memory, name } = creationData;
     const newVM: VirtualMachine = {
-      id: vmId,
+      id: `${vmId} ${name}`,
       state: true,
       hostServer: "43C07-27",
-      cpuValue: 1,
+      cpuValue: getRandomInt(Number(cpu)),
       cpu: Number(cpu),
-      memoryValue: 0,
+      memoryValue: getRandomInt(Number(memory)),
       memory: Number(memory),
       memoryUnit: "GiB",
       createdAt: new Date().toISOString(),
@@ -104,10 +105,12 @@ export function CreationDialog({ onClose }: Props) {
   }, [activeSectionIndex]);
 
   const activeSection = journey[activeSectionIndex];
-  const questionsWithAnswers = activeSection.questions.map((question) => ({
-    ...question,
-    answer: creationData?.[question.path],
-  }));
+  const questionsWithAnswers: QuestionType[] = activeSection.questions.map(
+    (question) => ({
+      ...question,
+      answer: creationData?.[question.path],
+    })
+  );
   const summaryAnswers =
     activeSection.answers?.map((answer) => ({
       label: answer.label,
