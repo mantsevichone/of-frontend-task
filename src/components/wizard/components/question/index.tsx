@@ -1,10 +1,11 @@
-import { type ChangeEvent } from "react";
 import { useController, type Control } from "react-hook-form";
 import Checkbox from "@mui/material/Checkbox";
 
-import type { QuestionType } from "../../types.ts";
-import { StyledTextField, StyledFormControlLabel } from "./styles.ts";
+import type { QuestionType } from "@/components/wizard/types";
+import { StyledFormControlLabel } from "./styles";
 import { Slider } from "./components/slider";
+import { NumberQuestion } from "./components/number";
+import { TextQuestion } from "./components/text";
 
 interface Props {
   question: QuestionType;
@@ -32,27 +33,15 @@ export function Question({ control, question }: Props) {
     rules: validations,
   });
 
-  const handleNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const numericValue = e.target.value.replace(/[^0-9]/g, "");
-
-    const formattedValue =
-      numericValue.startsWith("0") && numericValue.length > 1
-        ? numericValue.slice(1)
-        : numericValue;
-
-    onChange(formattedValue);
-  };
-
   switch (type) {
     case "number": {
       return (
-        <StyledTextField
+        <NumberQuestion
           label={label}
           value={value}
-          onChange={handleNumberChange}
+          onChange={onChange}
           helperText={error ? error.message : helperText}
           error={!!error}
-          inputMode="numeric"
         />
       );
     }
@@ -80,7 +69,7 @@ export function Question({ control, question }: Props) {
     case "text":
     default: {
       return (
-        <StyledTextField
+        <TextQuestion
           label={label}
           value={value}
           onChange={onChange}

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import TextField from "@mui/material/TextField";
 
 import { Title } from "../sharedStyles";
 
@@ -46,4 +47,37 @@ export const FormContainer = styled.div`
 export const FormTitle = styled(Title)`
   color: #1e1a20;
   margin-bottom: 8px;
+`;
+
+export const StyledTextField = styled(TextField)`
+  & label {
+    color: #1d1b20;
+  }
+  & label.Mui-focused {
+    color: #5f3196;
+  }
+  & label.Mui-error {
+    color: #ba1a1a;
+  }
+
+  & .MuiOutlinedInput-root {
+    & fieldset {
+      border-color: #79747e;
+    }
+    &.Mui-focused fieldset {
+      border-color: #5f3196;
+      border-width: 3px;
+    }
+    &.Mui-error fieldset {
+      border-color: #ba1a1a;
+    }
+  }
+
+  & .MuiFormHelperText-root {
+    color: #4a454e;
+
+    &.Mui-error {
+      color: #ba1a1a;
+    }
+  }
 `;
